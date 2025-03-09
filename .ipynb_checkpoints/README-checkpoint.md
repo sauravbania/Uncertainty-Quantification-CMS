@@ -32,14 +32,6 @@ In experimental physics, distinguishing **signal (new physics)** from **backgrou
 
 ## **📊 Dataset Selection**
 🔍 **Next Step:** Identify a relevant **CMS dataset** (real or simulated). Possible options:
-- Since the project is about Uncertainty Quantification in CMS Event Classification using Bayesian Neural Networks, we need data that that contains **labeled event classifications** from **High Energy Physics (HEP)** experiments.
-
-Characteristics of a suitable Dataset:
-- Contains event-level information (features like energy, momentum, particle ID, etc.).
-- Distinguishes between signal (new physics) and background (Standard Model physics).
-- Is structured in a format suitable for machine learning (ROOT files, CSV, HDF5).
-- Has uncertainties included (or allows us to estimate uncertainties).
-- 
 - Open-source **CMS experiment data**.
 - Monte Carlo (MC) generated datasets.
 - Simulated event classification data for proof-of-concept.
