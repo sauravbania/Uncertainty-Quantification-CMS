@@ -79,3 +79,8 @@ pip install numpy scipy matplotlib tensorflow torch pymc3
 2. **Search & finalize a dataset** 🔍
 3. **Implement Phase 1: Hypothesis Testing & Likelihood Ratios** ✏️
 
+
+## Dataset
+Due to Git LFS storage limits, the dataset is available for download from:
+🔗 [Download `QG_jets_withbc_0.npz` here](https://zenodo.org/records/3164691)
+
