@@ -84,3 +84,7 @@ pip install numpy scipy matplotlib tensorflow torch pymc3
 Due to Git LFS storage limits, the dataset is available for download from:
 🔗 [Download `QG_jets_withbc_0.npz` here](https://zenodo.org/records/3164691)
 
+## Processed Datasets
+The processed datasets are available for download here:  
+[Download Processed Data](https://drive.google.com/file/d/1tnq4J3slt3enlo-sbou0kiIOyqo1X0rn/view?usp=drive_link)
+
