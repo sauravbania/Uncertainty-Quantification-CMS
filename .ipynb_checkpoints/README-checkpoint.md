@@ -32,6 +32,14 @@ In experimental physics, distinguishing **signal (new physics)** from **backgrou
 
 ## **📊 Dataset Selection**
 🔍 **Next Step:** Identify a relevant **CMS dataset** (real or simulated). Possible options:
+- Since the project is about Uncertainty Quantification in CMS Event Classification using Bayesian Neural Networks, we need data that that contains **labeled event classifications** from **High Energy Physics (HEP)** experiments.
+
+Characteristics of a suitable Dataset:
+- Contains event-level information (features like energy, momentum, particle ID, etc.).
+- Distinguishes between signal (new physics) and background (Standard Model physics).
+- Is structured in a format suitable for machine learning (ROOT files, CSV, HDF5).
+- Has uncertainties included (or allows us to estimate uncertainties).
+- 
 - Open-source **CMS experiment data**.
 - Monte Carlo (MC) generated datasets.
 - Simulated event classification data for proof-of-concept.
@@ -70,4 +78,13 @@ pip install numpy scipy matplotlib tensorflow torch pymc3
 1. **Set up the GitHub repository** ✅
 2. **Search & finalize a dataset** 🔍
 3. **Implement Phase 1: Hypothesis Testing & Likelihood Ratios** ✏️
+
+
+## Dataset
+Due to Git LFS storage limits, the dataset is available for download from:
+🔗 [Download `QG_jets_withbc_0.npz` here](https://zenodo.org/records/3164691)
+
+## Processed Datasets
+The processed datasets are available for download here:  
+[Download Processed Data](https://drive.google.com/file/d/1tnq4J3slt3enlo-sbou0kiIOyqo1X0rn/view?usp=drive_link)
 
