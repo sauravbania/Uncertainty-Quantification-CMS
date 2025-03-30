@@ -99,6 +99,4 @@ Project developed by **Saurav Bania** as part of a self-exploration on **uncerta
 
 ---
 
-#### Note
-This project was conducted during Saurav Bania’s research in preparation for a PhD application focused on uncertainty quantification and interpretability in deep learning for high energy physics.
 
