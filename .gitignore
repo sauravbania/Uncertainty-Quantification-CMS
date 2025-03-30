@@ -1,2 +1,16 @@
 processed/*.npz
 processed/*.csv
+# Jupyter & Python cache
+__pycache__/
+.ipynb_checkpoints/
+*.pt
+*.npz
+*.png
+*.jpg
+
+# macOS system file
+.DS_Store
+
+# Processed and data folders
+processed/
+datasets/
