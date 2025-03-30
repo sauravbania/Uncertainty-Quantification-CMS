@@ -1,90 +1,104 @@
+# Uncertainty Quantification in CMS Jet Classification
 
-# **Uncertainty Quantification in CMS Event Classification Using Bayesian Neural Networks**
-
-## **📌 Project Overview**
-This project explores **Uncertainty Quantification (UQ)** in **CMS event classification** using **Bayesian Neural Networks (BNNs)**. Our goal is to analyze event classification in **High Energy Physics (HEP)**, particularly in the **CMS experiment**, by applying:
-- **Hypothesis Testing** (Chi-Squared Test, Likelihood Ratio Tests)
-- **Maximum Likelihood Estimation (MLE)** for parameter estimation
-- **Bayesian Inference** for event classification
-- **Bayesian Neural Networks (BNNs)** for UQ in physics predictions
-
-## **🔹 Motivation & Research Goals**
-In experimental physics, distinguishing **signal (new physics)** from **background (Standard Model processes)** is a fundamental challenge. Standard classification methods provide **hard decisions**, but they do not quantify the **uncertainty in classification**. By introducing **Bayesian techniques**, we aim to:
-✅ Improve **event classification** using probabilistic models.
-✅ Quantify **uncertainty** in **signal vs. background classification**.
-✅ Apply **statistical hypothesis testing** to evaluate model performance.
-
-## **📂 Planned Workflow**
-### **Phase 1: Hypothesis Testing & Statistical Foundations**
-- Implement **Chi-Squared Goodness-of-Fit Test** for classification.
-- Use **Likelihood Ratio Tests (LRTs)** to improve classification.
-- Apply **Maximum Likelihood Estimation (MLE)** for parameter estimation.
-
-### **Phase 2: Bayesian Inference & Uncertainty Quantification**
-- Implement **Bayesian methods** to classify CMS events.
-- Compare **Frequentist vs. Bayesian confidence intervals**.
-- Evaluate **model uncertainty** using Bayesian techniques.
-
-### **Phase 3: Bayesian Neural Networks for Event Classification**
-- Train a **Bayesian Neural Network (BNN)** for event classification.
-- Compare BNN performance with standard classification models.
-- Analyze the **effect of uncertainty in physics-based decision-making**.
-
-## **📊 Dataset Selection**
-🔍 **Next Step:** Identify a relevant **CMS dataset** (real or simulated). Possible options:
-- Since the project is about Uncertainty Quantification in CMS Event Classification using Bayesian Neural Networks, we need data that that contains **labeled event classifications** from **High Energy Physics (HEP)** experiments.
-
-Characteristics of a suitable Dataset:
-- Contains event-level information (features like energy, momentum, particle ID, etc.).
-- Distinguishes between signal (new physics) and background (Standard Model physics).
-- Is structured in a format suitable for machine learning (ROOT files, CSV, HDF5).
-- Has uncertainties included (or allows us to estimate uncertainties).
-- 
-- Open-source **CMS experiment data**.
-- Monte Carlo (MC) generated datasets.
-- Simulated event classification data for proof-of-concept.
-
-## **💻 Installation & Dependencies**
-To run the statistical and ML models, install:
-```bash
-pip install numpy scipy matplotlib tensorflow torch pymc3
-```
-
-## **📜 Project Roadmap & Contributions**
-📌 This is an evolving research project. Future extensions:
-- Testing with **real CMS data**.
-- Advanced Bayesian Deep Learning techniques.
-- Expanding to **other HEP event classification problems**.
-
-🚀 **Contributors**: This project is maintained by [Your Name]. Contributions are welcome!
+This repository presents a complete end-to-end pipeline for distinguishing **quark** and **gluon** jets using CMS open data. It focuses on quantifying the uncertainty in deep learning predictions using **Bayesian Neural Networks (BNNs)** via **Monte Carlo Dropout**.
 
 ---
-📂 **Repository Structure (Initial Plan)**
+
+## Project Structure
+
+The work is organized into three major phases:
+
+### Phase 1: Hypothesis Testing
+- Loaded and preprocessed jet-wise features ($p_T$, $\eta$, $\phi$)
+- Engineered $p_T$-weighted jet widths (in $\eta$, $\phi$)
+- Compared distributions (quark vs gluon) using:
+  - Histograms
+  - Cumulative Distribution Functions (CDFs)
+  - Kolmogorov-Smirnov (KS) test
+- Extracted insights on which features are best for discrimination
+
+### Phase 2: Feature Engineering
+- Computed jet-wise and particle-level engineered features
+- Key engineered features:
+  - $p_T$-weighted jet width in $\eta$ and $\phi$
+  - $\Delta R$ between particles and jet centroid (mean, max)
+- Quantified feature importance using:
+  - Descriptive statistics (mean, std, skew, kurtosis)
+  - KS statistics
+  - Visual comparisons
+
+### Phase 3: Machine Learning + Uncertainty
+- Implemented and compared the following models:
+  - Logistic Regression
+  - Random Forest (with GridSearch)
+  - Multi-Layer Perceptron (MLP)
+    - 1 hidden layer (full batch)
+    - 2 hidden layers (full batch)
+    - 2 hidden layers (mini-batch)
+  - Bayesian Neural Network (BNN via Monte Carlo Dropout)
+- Used Binary Cross-Entropy Loss (BCELoss)
+- Tracked loss, training curves, accuracy
+- Evaluated results using:
+  - Accuracy
+  - Precision, Recall, F1-Score
+  - Confusion Matrix
+
+---
+
+## Final Results (Test Set)
+
+| Model           | Architecture     | Training Type | Accuracy | Notes                      |
+|----------------|------------------|----------------|----------|----------------------------|
+| Logistic Reg.  | –                | –              | ~66%     | Baseline                   |
+| Random Forest  | –                | GridSearch     | **~72.65%** | Best traditional ML        |
+| MLP            | 1 Hidden Layer   | Full-batch     | ~71.8%   | Stable improvement         |
+| MLP            | 2 Hidden Layers  | Full-batch     | ~72.2%   | Slightly better            |
+| MLP            | 2 Hidden Layers  | **Mini-batch** | **~72.34%** | Best DL model so far       |
+| BNN (MC Dropout) | 2 Hidden Layers | Mini-batch     | ~72.54%  | Added uncertainty quantification |
+
+---
+
+## Uncertainty Quantification (MC Dropout)
+- **Mean predicted probability**: per test sample
+- **Uncertainty**: standard deviation of predictions over 100 stochastic passes
+- **Confidence** = 1 − std
+
+### Overall BNN Results:
+- **Average Confidence**: ~92.6%
+- **Average Uncertainty**: ~7.4%
+- **High-confidence predictions (>90%)**: ~91.07% of test samples
+
+---
+
+## Usage
+
+```bash
+# 1. Clone repo
+$ git clone https://github.com/yourusername/uq-cms-jets.git
+
+# 2. Set up environment
+$ pip install -r requirements.txt
+
+# 3. Run notebooks
+Phase1_Hypothesis_Testing.ipynb
+Phase2_Feature_Engineering.ipynb
+Phase3_Machine_Learning.ipynb
 ```
-📦 Uncertainty-Quantification-CMS
- ┣ 📜 README.md   # Project Overview
- ┣ 📜 hypothesis_testing.py  # Chi-Squared & LRT Implementation
- ┣ 📜 bayesian_inference.py  # Bayesian Classification Methods (Future Phase)
- ┣ 📜 bnn_classification.py  # Bayesian Neural Networks (Future Phase)
- ┗ 📂 datasets/  # CMS-like datasets for analysis
-```
 
-🔗 **References & Further Reading**:
-- CMS Experiment: [https://cms.cern](https://cms.cern)
-- Bayesian Neural Networks: [https://arxiv.org/pdf/1906.02506.pdf](https://arxiv.org/pdf/1906.02506.pdf)
-- Hypothesis Testing in Physics: [https://arxiv.org/pdf/physics/0702156.pdf](https://arxiv.org/pdf/physics/0702156.pdf)
+---
 
-📌 **Next Steps**:
-1. **Set up the GitHub repository** ✅
-2. **Search & finalize a dataset** 🔍
-3. **Implement Phase 1: Hypothesis Testing & Likelihood Ratios** ✏️
+## Author
+Project developed by **Saurav Bania** as part of a self-exploration on **uncertainty quantification in particle physics**.
 
+---
 
-## Dataset
-Due to Git LFS storage limits, the dataset is available for download from:
-🔗 [Download `QG_jets_withbc_0.npz` here](https://zenodo.org/records/3164691)
+## References
+- Gal & Ghahramani (2016), [Dropout as a Bayesian Approximation](https://arxiv.org/abs/1506.02142)
+- CMS Open Data portal
+- sklearn, matplotlib, numpy, pandas, seaborn
 
-## Processed Datasets
-The processed datasets are available for download here:  
-[Download Processed Data](https://drive.google.com/file/d/1tnq4J3slt3enlo-sbou0kiIOyqo1X0rn/view?usp=drive_link)
+---
+
+#### Note
+This project was conducted during Saurav Bania’s research in preparation for a PhD application focused on uncertainty quantification and interpretability in deep learning for high energy physics.
 
