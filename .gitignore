@@ -1,6 +1,24 @@
+# Processed data files
 processed/*.npz
 processed/*.csv
-# Jupyter & Python cache
+processed/
+
+# Dataset files
+datasets/
+datasets/*.npz
+
+# Output and intermediate analysis files
+cpp_substructure/jets_for_entropy.txt
+cpp_substructure/jets_particles.txt
+cpp_substructure/entropy_output.csv
+cpp_substructure/tau_output.csv
+
+# Scripts that save temporary files
+save_entropy_*.py
+save_tau_processed.py
+save_to_txt.py
+
+# Python and Jupyter internals
 __pycache__/
 .ipynb_checkpoints/
 *.pt
@@ -11,6 +29,5 @@ __pycache__/
 # macOS system file
 .DS_Store
 
-# Processed and data folders
-processed/
-datasets/
+# VSCode
+.vscode/
